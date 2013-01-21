@@ -1,7 +1,7 @@
 package ExclusiveLock::Guard;
 use strict;
 use warnings;
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 use Errno qw(EWOULDBLOCK);
 use Fcntl qw(LOCK_EX LOCK_NB LOCK_UN);
@@ -39,7 +39,7 @@ sub new {
                 return;
             }
         }
-        unless (-f $filename && stat($fh)->ino == stat($filename)->ino) {
+        unless (-f $filename && stat($fh)->ino == do { my $s = stat($filename); $s ? $s->ino : -1 }) {
             unless (flock $fh, LOCK_UN) {
                 $ERRSTR = "failed to unlock flock file:$filename:$!";
                 return;

@@ -34,6 +34,9 @@ DESCRIPTION
 AUTHOR
     Kazuhiro Osawa <yappo {at} shibuya {dot} pl>
 
+COPYRIGHT
+    Copyright 2012- Kazuhiro Osawa
+
 LICENSE
     This library is free software; you can redistribute it and/or modify it
     under the same terms as Perl itself.
